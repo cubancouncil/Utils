@@ -1,12 +1,12 @@
-import os
+from fabric.state import env
 
 """
 Compression configuration example file. Copy this and update the below with your own local settings into settings.py
 """
 
-compress_root = '/path/to/my/site/root/http/_lib/'
+env.compress_root = '/path/to/my/site/root/http/_lib/'
 
-compress_files = {
+env.compress_files = {
     'js': {
         
         # Outputs /path/to/my/site/root/http/_lib/js/oldspice.min.js, compressing all files in tuple
