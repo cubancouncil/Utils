@@ -30,6 +30,33 @@ except ImportError:
 
 # ---- Functions
 
+def pushkey(keytype='dsa'):
+    
+    """
+    Put your local SSH key on an indicated remote host
+    
+    Usage:
+    
+        fab pushkey
+    
+    If not using DSA, pass in key type to use:
+    
+        fab pushkey:rsa
+    
+    To push to a specific host:
+    
+        fab -H someserver.com pushkey
+    
+    """
+    
+    publickey = '~/.ssh/id_%s.pub' % keytype
+    tmpfile = '/tmp/%s.pub' % env.user
+    
+    run('mkdir -p ~/.ssh && chmod 700 ~/.ssh')
+    put(publickey, tmpfile)
+    run('cat %s >> ~/.ssh/authorized_keys' % tmpfile)
+    run('rm %s' % tmpfile)
+
 def compress():
     
     """
