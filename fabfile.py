@@ -83,5 +83,5 @@ def compress():
             # Cycle through and compress files
 
             file_list = ' '.join('\'' + os.path.join(env.compress_root, in_file).replace('\\', '/') + '\'' for in_file in file_list)
-            cmd = 'awk 1 %s | java -jar yuicompressor-2.4.2.jar --type %s -o %s' % (file_list, file_type, out_file_path)
+            cmd = 'awk 1 %s | java -jar yuicompressor-2.4.6.jar --type %s -o %s' % (file_list, file_type, out_file_path)
             local(cmd, capture=False)
